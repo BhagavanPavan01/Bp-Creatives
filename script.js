@@ -69,9 +69,11 @@ window.addEventListener('scroll', function() {
 });
 
 // Initialize portfolio items
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const portfolioItems = document.querySelectorAll('.portfolio-item');
     portfolioItems.forEach(item => {
         item.style.opacity = '0';
         item.style.transform = 'translateY(20px)';
         item.style.transition = 'all 0.5s ease';
+    });
+});
