@@ -77,3 +77,54 @@ document.addEventListener('DOMContentLoaded', function () {
         item.style.transition = 'all 0.5s ease';
     });
 });
+
+
+
+
+
+// Testimonial Slider Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.testimonial-dot');
+    let currentSlide = 0;
+    const slideInterval = 5000; // 5 seconds
+    
+    // Function to show a specific slide
+    function showSlide(index) {
+        // Hide all slides and remove active class from dots
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        // Show the selected slide and activate its dot
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentSlide = index;
+    }
+    
+    // Auto-advance slides
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+    
+    let slideTimer = setInterval(nextSlide, slideInterval);
+    
+    // Pause on hover
+    const slider = document.querySelector('.testimonial-slider');
+    slider.addEventListener('mouseenter', () => clearInterval(slideTimer));
+    slider.addEventListener('mouseleave', () => {
+        slideTimer = setInterval(nextSlide, slideInterval);
+    });
+    
+    // Dot navigation
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            clearInterval(slideTimer);
+            showSlide(index);
+            slideTimer = setInterval(nextSlide, slideInterval);
+        });
+    });
+    
+    // Show first slide initially
+    showSlide(0);
+});
