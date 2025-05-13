@@ -33,9 +33,37 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Form submission
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+// const contactForm = document.getElementById('contactForm');
+// if (contactForm) {
+//     contactForm.addEventListener('submit', function(e) {
+//         e.preventDefault();
+        
+//         // Get form values
+//         const name = document.getElementById('name').value;
+//         const email = document.getElementById('email').value;
+//         const subject = document.getElementById('subject').value;
+//         const message = document.getElementById('message').value;
+        
+//         // Here you would typically send the data to a server
+//         // For demo purposes, we'll just show an alert
+//         alert(`Thank you, ${name}! Your message has been sent. We'll contact you soon at ${email}.`);
+        
+//         // Reset form
+//         contactForm.reset();
+//     });
+// }
+
+
+  document.getElementById("emailForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const subject = encodeURIComponent(document.getElementById("subject").value);
+    const body = encodeURIComponent(document.getElementById("body").value);
+
+    window.location.href = `mailto:bhagavanpavan01@gmail.com?subject=${subject}&body=${body}`;
+  });
+  if (emailForm) {
+    emailForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
         // Get form values
@@ -49,9 +77,10 @@ if (contactForm) {
         alert(`Thank you, ${name}! Your message has been sent. We'll contact you soon at ${email}.`);
         
         // Reset form
-        contactForm.reset();
+        emailForm.reset();
     });
 }
+
 
 // Animation on scroll
 window.addEventListener('scroll', function() {
@@ -127,4 +156,29 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Show first slide initially
     showSlide(0);
+});
+
+
+
+
+
+// Animate process steps on scroll
+document.addEventListener('DOMContentLoaded', function() {
+    const processSteps = document.querySelectorAll('.process-step');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    processSteps.forEach((step, index) => {
+        step.style.opacity = '0';
+        step.style.transform = 'translateY(30px)';
+        step.style.transition = `opacity 0.5s ease ${index * 0.2}s, transform 0.5s ease ${index * 0.2}s`;
+        observer.observe(step);
+    });
 });

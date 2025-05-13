@@ -397,3 +397,134 @@ footer {
 .text-gold {
     color: #c6ab14;
 }
+
+
+
+
+/* Process Section Styles */
+#process {
+    position: relative;
+    overflow: hidden;
+}
+
+.process-timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.process-timeline::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: #4e54c8;
+    background: linear-gradient(to bottom, #4e54c8, #8f94fb);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+    border-radius: 10px;
+}
+
+.process-step {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+}
+
+.process-step:nth-child(odd) {
+    left: 0;
+}
+
+.process-step:nth-child(even) {
+    left: 50%;
+}
+
+.step-content {
+    padding: 20px 30px;
+    background-color: #f8f9fa;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.step-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.step-number {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    top: 15px;
+    z-index: 1;
+}
+
+.process-step:nth-child(odd) .step-number {
+    right: -25px;
+}
+
+.process-step:nth-child(even) .step-number {
+    left: -25px;
+}
+
+.step-icon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: 3px solid #4e54c8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4e54c8;
+    font-size: 18px;
+    top: 20px;
+}
+
+.process-step:nth-child(odd) .step-icon {
+    right: -55px;
+}
+
+.process-step:nth-child(even) .step-icon {
+    left: -55px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .process-timeline::before {
+        left: 31px;
+    }
+    
+    .process-step {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+    
+    .process-step:nth-child(even) {
+        left: 0;
+    }
+    
+    .step-number, .process-step:nth-child(even) .step-number {
+        left: 15px;
+    }
+    
+    .step-icon, .process-step:nth-child(even) .step-icon {
+        left: 5px;
+    }
+}
